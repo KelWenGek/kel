@@ -10,7 +10,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "babel-preset-react": "^6.24.1",
     "immutable": "^3.8.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0",
     "vue": "^2.3.3"
   },
   "devDependencies": {

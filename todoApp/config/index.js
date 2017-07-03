@@ -1,6 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var projectName = 'vue-todo';
+var projectName = 'react-test';
 
 var distPath = `../dist/${projectName}`;
 module.exports = {
