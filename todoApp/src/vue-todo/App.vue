@@ -8,7 +8,7 @@
           @click="toggleAll($event)">
       </header>
       <div :class="$style.main">
-        <ul :class="$style['todo-list']">
+        <transition-group tag="ul" :class="$style['todo-list']" name="bounce" mode="out-in">
           <li :class="{[$style.editing]:editing===todo.id,[$style.completed]:todo.completed}" v-for="todo in visibleTodoList" :key="todo.id">
             <div :class="$style.view">
               <input type="checkbox" :class="$style.toggle" :checked="todo.completed" @click="toggleTodo(todo.id)">
@@ -17,7 +17,7 @@
             </div>
             <input type="text" v-todo-focus :class="$style.edit" :value="todo.text" @keyup.enter="save(todo.id,$event)" />
           </li>
-        </ul>
+        </transition-group>
       </div>
       <footer :class="$style.footer" :style="{display:todoCount===0?'none':'block'}">
         <span :class="$style['todo-count']">
@@ -42,6 +42,8 @@
   </div>
 </template>
 <script>
+  //now head to develop branch
+
   const getUuid = function () {
     var i, random;
     var uuid = '';
@@ -201,6 +203,51 @@
   }
 
 </script>
+<style>
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 1s;
+  }
+  
+  .list-enter,
+  .list-leave-active {
+    position: absolute;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  
+  .bounce-enter-active {
+    animation: bounce-in 0.5s;
+  }
+  
+  .bounce-leave-active {
+    animation: bounce-out 0.5s;
+  }
+  
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes bounce-out {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+</style>
 <style module>
   html,
   body {
