@@ -1,6 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var projectName = 'react-test';
+var projectName = 'vue-todo';
 
 var distPath = `../dist/${projectName}`;
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, distPath),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    productionSourceMap: true,
+    productionSourceMap: false,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:

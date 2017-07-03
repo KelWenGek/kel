@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 export default connect(state => ({
     word: state.word
-}))(class extends Component {
+}))(class Hello extends Component {
+
     render() {
         let { word, dispatch } = this.props;
         return (
