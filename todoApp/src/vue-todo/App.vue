@@ -6,7 +6,6 @@
         <input :class="$style['new-todo']" type="text" placeholder="What needs to be done?" @keyup.enter="addTodo($event)">
         <input :class="$style['toggle-all']" :style="{display:todoCount===0?'none':'block'}" type="checkbox" :checked="isToggleAll"
           @click="toggleAll($event)">
-
       </header>
       <div :class="$style.main">
         <ul :class="$style['todo-list']">
@@ -25,7 +24,7 @@
           {{todoCount+' item'+(todoCount>1?'s':'')+' left'}}
         </span>
         <ul :class="$style.filters">
-          <li v-for="filter in filters">
+          <li v-for="filter in filterStrs">
             <a :class="{[$style.selected]:filter===curFilter}" href="javascript:void(0)" @click="doFilter(filter)">
                {{filter}}
             </a>
@@ -56,26 +55,43 @@
     }
     return uuid;
   };
+  const utils = {
+    store(namespace, data) {
+      if (data) {
+        return localStorage.setItem(namespace, JSON.stringify(data));
+      }
+
+      var store = localStorage.getItem(namespace);
+      return (store && JSON.parse(store)) || [];
+    }
+  }
+  const NAMESPACE = Symbol.for('vue-todo');
+  //过滤器
+  const filters = [Symbol.for('All'), Symbol.for('Completed'), Symbol.for('Active')];
+  const [F_ALL, F_COMPLETED, F_ACTIVE] = filters;
   import { OrderedSet } from 'immutable';
   export default {
     name: 'app',
     data() {
       return {
-        todos: OrderedSet(),
-        curFilter: 'All',
-        filters: ['All', 'Completed', 'Active'],
+        todos: OrderedSet(utils.store(Symbol.keyFor(NAMESPACE))),
+        curFilter: Symbol.keyFor(F_ALL),
+        filters: filters,
         editing: ''
       }
     },
     computed: {
+      filterStrs() {
+        return this.filters.map(filter => Symbol.keyFor(filter));
+      },
       visibleTodoList() {
-        let curFilter = this.curFilter;
+        let curFilter = Symbol.for(this.curFilter);
         switch (curFilter) {
-          case 'All':
+          case F_ALL:
             return this.todos.toJS();
-          case 'Completed':
+          case F_COMPLETED:
             return this.todos.filter(todo => todo.completed).toJS();
-          case 'Active':
+          case F_ACTIVE:
             return this.todos.filter(todo => !todo.completed).toJS();
           default:
             return this.todos.toJS();
@@ -101,6 +117,9 @@
 
     },
     methods: {
+      store() {
+        utils.store(Symbol.keyFor(NAMESPACE), this.todos);
+      },
       addTodo(event) {
         let text = event.target.value.trim();
         if (!text || this.todos.some(todo => todo.text === text)) {
@@ -112,6 +131,7 @@
           completed: false,
           id: getUuid()
         });
+        this.store();
         event.target.value = '';
       },
       toggleTodo(id) {
@@ -128,12 +148,15 @@
           }
           return _todo;
         });
+        this.store();
       },
       toggleAll(event) {
         this.isToggleAll = event.target.checked;
+        this.store();
       },
       remove(id) {
         this.todos = this.todos.delete(this.todos.find(todo => todo.id === id));
+        this.store();
       },
       edit(id) {
         this.editing = id;
@@ -158,6 +181,7 @@
           }
           return _todo;
         });
+        this.store();
         this.editing = '';
       },
       doFilter(filter) {
@@ -165,6 +189,7 @@
       },
       clear() {
         this.todos = this.todos.filter(todo => !todo.completed);
+        this.store();
       }
     },
     directives: {
