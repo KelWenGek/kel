@@ -8,7 +8,7 @@
           @click="toggleAll($event)">
       </header>
       <div :class="$style.main">
-        <transition-group tag="ul" :class="$style['todo-list']" name="bounce" mode="out-in">
+        <transition-group tag="ul" :class="$style['todo-list']" name="demo" enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight" mode="out-in">
           <li :class="{[$style.editing]:editing===todo.id,[$style.completed]:todo.completed}" v-for="todo in visibleTodoList" :key="todo.id">
             <div :class="$style.view">
               <input type="checkbox" :class="$style.toggle" :checked="todo.completed" @click="toggleTodo(todo.id)">
