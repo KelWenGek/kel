@@ -1,5 +1,8 @@
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+//@flow
 export default connect(state => ({
     word: state.word
 }))(class Hello extends Component {

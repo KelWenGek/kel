@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './App.js';
@@ -23,7 +24,7 @@ const store = createStore(combineReducers({
             default: return state;
         }
     }
-}), applyMiddleware(logger, thunk));
+}), composeWithDevTools(applyMiddleware(logger, thunk)));
 render(<Provider store={store}>
     <App />
 </Provider>, document.getElementById('app'));
