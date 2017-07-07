@@ -1,12 +1,14 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var projectName = 'react-test';
+// var projectName = 'react-test';
+// var projectName = 'vue-todo';
+var projectName = 'ts-test';
 
 var distPath = `../dist/${projectName}`;
 module.exports = {
   build: {
     env: require('./prod.env'),
-    src: path.resolve(__dirname, `../src/${projectName}/main.js`),
+    src: path.resolve(__dirname, `../src/${projectName}/main.ts`),
     tpl: path.resolve(__dirname, `../src/${projectName}/index.html`),
     index: path.resolve(__dirname, distPath + '/index.html'),
     assetsRoot: path.resolve(__dirname, distPath),
