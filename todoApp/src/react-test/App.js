@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 //@flow
 export default connect(state => ({
     word: state.word
-}))(class Hello extends Component {
+}), null, (stateProps, dispatchProps, ownProps) => {
+    return Object.assign({}, dispatchProps, ownProps, { word: stateProps.word + 'custom' })
+})(class Hello extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,9 +15,9 @@ export default connect(state => ({
             counter: 0
         };
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.state.counter !== nextState.counter;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return this.state.counter !== nextState.counter;
+    // }
 
     handleClick = () => {
         console.log('not bind this');

@@ -18,8 +18,7 @@
   ],
   "plugins": [
     "transform-runtime",
-    "transform-react-jsx",
-    "transform-react-stateless-component-name"
+    "transform-react-jsx"
   ],
   "env": {
     "test": {

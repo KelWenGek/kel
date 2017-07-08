@@ -1,3 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`adds 1 + 2 to equals 3 1`] = `3`;
+exports[`test mockImplementation test calls to class 1`] = `
+Array [
+  Array [
+    "a",
+    "b",
+  ],
+]
+`;
