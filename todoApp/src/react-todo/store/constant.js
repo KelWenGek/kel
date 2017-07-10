@@ -1,0 +1,6 @@
+export const VISIBILITY_FILTER = {
+  ALL: 'SHOW_ALL',
+  COMPLETED: 'SHOW_COMPLETED',
+  ACTIVE: 'SHOW_ACTIVE'
+};
+export const ENTER_KEY = 13;
