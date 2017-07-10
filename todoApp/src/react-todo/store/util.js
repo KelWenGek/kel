@@ -85,9 +85,23 @@ export class Model {
 
   }
 
+  toggleAll({ checked }) {
+    this.todos = this.todos.map(todo => {
+      return Object.assign({}, todo, { completed: checked });
+    });
+    this.set();
+    return this.todos;
+  }
+
   remove({ id }) {
     this.todos = this.todos.delete(this.todos.find(todo => todo.id === id));
 
+    this.set();
+    return this.todos;
+  }
+
+  clearCompleted() {
+    this.todos = this.todos.filter(todo => !todo.completed);
     this.set();
     return this.todos;
   }

@@ -1,15 +1,26 @@
-import React, { createClass } from 'react';
+import React, { createClass, Component } from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../store/action/index.js';
+import { addTodo, toggleAllTodo } from '../store/action/index.js';
 import { ENTER_KEY } from '../store/constant';
-let AddTodo = createClass({
-  displayName: "AddTodo",
-  doAddTodo(val) {
-    let { dispatch } = this.props;
-    dispatch(addTodo(val));
-  },
+export default connect((state) => {
+  let todos = state.get('todos');
+  return {
+    isToggleAll: todos.size !== 0 && todos.filter(todo => !todo.completed).size === 0
+  };
+}, { addTodo, toggleAllTodo })(class AddTodo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggleAll: false
+    };
+  }
+  doAddTodo = (val) => {
+    let { addTodo } = this.props;
+    addTodo(val);
+  }
   render() {
     let input;
+    let { isToggleAll, toggleAllTodo } = this.props;
     return (
       <div>
         <input
@@ -29,11 +40,17 @@ let AddTodo = createClass({
               input.value = '';
             }
           }} />
+        <span className={['toggle-all', isToggleAll ? 'checked' : ''].join(' ')}
+          onClick={(e) => {
+            this.setState((prevState, props) => {
+              let nextChecked = !prevState.isToggleAll;
+              toggleAllTodo(nextChecked);
+              return {
+                isToggleAll: nextChecked
+              }
+            })
+          }} ></span>
       </div>
     );
-
   }
-
 });
-
-export default connect()(AddTodo);

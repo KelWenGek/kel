@@ -1,17 +1,14 @@
-import React, { createClass } from 'react';
+import React, { createClass, Component } from 'react';
 import { is } from 'immutable';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Todo from './Todo';
 
-let TodoList = createClass({
-
-
-  displayName: "TodoList",
+class TodoList extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return !is(this.props, nextProps);
-  },
+  }
 
   render() {
     let { todos, editing, toggleTodo, removeTodo, editTodo, saveTodoAsync, editDone } = this.props;
@@ -37,7 +34,7 @@ let TodoList = createClass({
       </ul >
     );
   }
-});
+};
 
 TodoList.propTypes = {
   editing: PropTypes.string,

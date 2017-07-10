@@ -1,16 +1,16 @@
-import React, { createClass } from 'react';
+import React, { createClass, Component } from 'react';
 import { is } from 'immutable';
 import PropTypes from 'prop-types';
 import { VISIBILITY_FILTER } from '../store/constant';
 
-let FooterLink = createClass({
-  displayName: "FooterLink",
+class FooterLink extends Component {
+
   shouldComponentUpdate(nextProps, nextState) {
 
     return !is(this.props, nextProps);
-  },
+  }
   render() {
-    let { left, curFilter, onFilter } = this.props;
+    let { left, curFilter, onFilter, doClearCompleted } = this.props;
     return (
       <div
         className="footer"
@@ -44,10 +44,11 @@ let FooterLink = createClass({
               )
             })}
         </ul>
+        <a href="javascript:void(0);" className="clear-completed" onClick={doClearCompleted}>clear-completed</a>
       </div>
     );
   }
-});
+};
 
 FooterLink.propTypes = {
   left: PropTypes.number,

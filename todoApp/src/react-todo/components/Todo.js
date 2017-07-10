@@ -11,10 +11,10 @@ class Todo extends Component {
     if (!isPrevEditing && isEditing) {
       this.refs.editField.focus();
     }
-  } 
-  shouldComponentUpdate(nextProps, nextState) { 
+  }
+  shouldComponentUpdate(nextProps, nextState) {
     return nextProps.editing !== nextProps.id ? !is(this.props.todo, nextProps.todo) : true;
-  } 
+  }
   render() {
     return (
       <li
@@ -30,8 +30,8 @@ class Todo extends Component {
         <input
           type="checkbox"
           className="toggle"
-          defaultChecked={this.props.completed}
-          onClick={this.props.onToggle} />
+          checked={this.props.completed}
+          onChange={this.props.onToggle} />
         <label className="view" onDoubleClick={this.props.onEdit}>
           {this.props.text}
         </label>

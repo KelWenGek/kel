@@ -11,6 +11,10 @@ const todos = (state = model.todos, action) => {
       return model.remove(action);
     case ACTION_TYPE.SAVE_TODO:
       return model.save(action);
+    case ACTION_TYPE.TOGGLE_ALL_TODO:
+      return model.toggleAll(action);
+    case ACTION_TYPE.CLEAR_COMPLETED:
+      return model.clearCompleted()
     default:
       return state;
   }
