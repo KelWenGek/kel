@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!--<div :class="kel.test">
+      test module
+    </div>-->
     <div :class="$style.todoapp">
       <header class="header">
         <h1>todos</h1>
@@ -8,7 +11,8 @@
           @click="toggleAll($event)">
       </header>
       <div :class="$style.main">
-        <transition-group tag="ul" :class="$style['todo-list']" name="demo" enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight" mode="out-in">
+        <transition-group tag="ul" :class="$style['todo-list']" name="demo" enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight"
+          mode="out-in">
           <li :class="{[$style.editing]:editing===todo.id,[$style.completed]:todo.completed}" v-for="todo in visibleTodoList" :key="todo.id">
             <div :class="$style.view">
               <input type="checkbox" :class="$style.toggle" :checked="todo.completed" @click="toggleTodo(todo.id)">
@@ -62,7 +66,6 @@
       if (data) {
         return localStorage.setItem(namespace, JSON.stringify(data));
       }
-
       var store = localStorage.getItem(namespace);
       return (store && JSON.parse(store)) || [];
     }
@@ -116,7 +119,7 @@
       }
     },
     created() {
-
+      
     },
     methods: {
       store() {
@@ -203,6 +206,13 @@
   }
 
 </script>
+
+<style module="kel">
+  .test {
+    color: red;
+  }
+</style>
+
 <style>
   .list-enter-active,
   .list-leave-active {

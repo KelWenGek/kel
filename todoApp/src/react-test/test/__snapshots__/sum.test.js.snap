@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test mockImplementation test calls to class 1`] = `
+Array [
+  Array [
+    "a",
+    "b",
+  ],
+]
+`;
