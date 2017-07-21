@@ -1,4 +1,5 @@
 import React, { createClass, Component } from 'react';
+import { is } from 'immutable';
 import { connect } from 'react-redux';
 import { addTodo, toggleAllTodo } from '../store/action/index.js';
 import { ENTER_KEY } from '../store/constant';
@@ -18,6 +19,10 @@ export default connect((state) => {
     let { addTodo } = this.props;
     addTodo(val);
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    return !is(this.props, nextProps);
+  }
+
   render() {
     let input;
     let { isToggleAll, toggleAllTodo } = this.props;

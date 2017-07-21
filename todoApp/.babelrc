@@ -18,7 +18,8 @@
   ],
   "plugins": [
     "transform-runtime",
-    "transform-react-jsx"
+    "transform-react-jsx",
+    "transform-decorators-legacy"
   ],
   "env": {
     "test": {

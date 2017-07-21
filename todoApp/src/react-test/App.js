@@ -1,13 +1,29 @@
-
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
+
+
+const withLog = WrappedComponent => {
+    console.log('withlog');
+    return class HelloHoc extends Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return <WrappedComponent {...this.props} />;
+        }
+    }
+}
+
+
 //@flow
-export default connect(state => ({
+@compose(connect(state => ({
     word: state.word
 }), null, (stateProps, dispatchProps, ownProps) => {
     return Object.assign({}, dispatchProps, ownProps, { word: stateProps.word + 'custom' })
-})(class Hello extends Component {
+}), withLog)
+export default class Hello extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,7 +51,7 @@ export default connect(state => ({
         return (
             <div>
                 <div>counter:{this.state.counter}</div>
-                <div>{`Hello ${this.state.name} with the following words:`}</div>
+                <div>{`Hello ${this.props.name} with the following words:`}</div>
                 <p>{word}</p>
                 <button
                     onClick={() => {
@@ -60,4 +76,4 @@ export default connect(state => ({
             </div>
         );
     }
-})
+};
