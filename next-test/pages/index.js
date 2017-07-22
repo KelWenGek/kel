@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import axios from 'axios';
 export default class extends Component {
     static async getInitialProps() {
@@ -27,7 +28,7 @@ export default class extends Component {
                                     return (
                                         <tr key={i} className={oddOrNot}>
                                             <td>{standing.position}</td>
-                                            <td><img className="pure-img logo" src={standing.crestURI} /></td>
+                                            <td><Link href={`/details?id=${standing.position}`}><a><img className="pure-img logo" src={standing.crestURI} /></a></Link></td>
                                             <td>{standing.points}</td>
                                             <td>{standing.goals}</td>
                                             <td>{standing.wins}</td>

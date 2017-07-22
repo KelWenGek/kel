@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-
+import style from './wave.scss';
 
 
 const withLog = WrappedComponent => {
@@ -45,11 +45,25 @@ export default class Hello extends Component {
             }
         })
     }
+    delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+    async f() {
+        // await this.delay(1000);
+        // await this.delay(2000);
+        // await this.delay(3000);
+        // return 'done';
+        // throw new Error('error');
+        // return 'hello world';
+        return await 1;
+    }
 
     render() {
+        this.f().then(v => console.log(v)).catch(v => console.log(v));
         let { word, dispatch } = this.props;
         return (
             <div>
+                <div className="container">
+                    <div className="wave"></div>
+                </div>
                 <div>counter:{this.state.counter}</div>
                 <div>{`Hello ${this.props.name} with the following words:`}</div>
                 <p>{word}</p>

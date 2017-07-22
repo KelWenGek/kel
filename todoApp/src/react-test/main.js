@@ -8,7 +8,14 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './App.js';
 import About from './About.js';
+import Perf from 'react-addons-perf';
+import { whyDidYouUpdate } from 'why-did-you-update';
+window.Perf = Perf;
 
+
+// if (process.env.NODE_ENV !== 'production') {
+//     whyDidYouUpdate(React);
+// }
 
 const logger = store => next => action => {
     console.log('dispatch: ', action);
