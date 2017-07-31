@@ -1,6 +1,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var projectName = 'react-test';
+// var projectName = 'react-test';
+var projectName = 'mobx-test';
 // var projectName = 'react-todo';
 // var projectName = 'vue-todo';
 // var projectName = 'ts-test';

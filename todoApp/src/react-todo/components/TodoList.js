@@ -9,7 +9,7 @@ class TodoList extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !is(this.props, nextProps);
   }
-
+  
   render() {
     let { todos, editing, toggleTodo, removeTodo, editTodo, saveTodoAsync, editDone } = this.props;
 

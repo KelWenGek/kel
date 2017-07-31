@@ -47,7 +47,8 @@
 </template>
 <script>
   //now head to develop branch
-
+  import Vue from 'vue';
+  import axios from 'axios';
   const getUuid = function () {
     var i, random;
     var uuid = '';
@@ -119,8 +120,18 @@
       }
     },
     created() {
+
+
+
+
+    },
+    mounted() {
+      this.fetchData().then((res) => console.log(res));
     },
     methods: {
+      fetchData() {
+        return axios.get('http://localhost:8888/demo');
+      },
       store() {
         utils.store(Symbol.keyFor(NAMESPACE), this.todos);
       },
