@@ -211,6 +211,7 @@ class Context extends Component {
     }
 
     state = { value: '' }
+    
     constructor() {
         super();
     }
