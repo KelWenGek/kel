@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { createSelector } from 'reselect';
 import TodoList from '../components/TodoList';
 // { toggleTodo, removeTodo, editTodo, editDone, saveTodoAsync }
 import * as mapDispatchToProps from '../store/action/index';
 import { VISIBILITY_FILTER } from '../store/constant';
 
-const getVisibleTodos = (todos, filter) => {
+const getVisibleTodos = createSelector([state => state.get('todos'), state => state.get('visibilityFilter')], (todos, filter) => {
   switch (filter) {
     case VISIBILITY_FILTER.ALL:
       return todos;
@@ -14,10 +15,11 @@ const getVisibleTodos = (todos, filter) => {
     case VISIBILITY_FILTER.ACTIVE:
       return todos.filter((todo) => !todo.completed);
   }
-}
+})
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    todos: getVisibleTodos(state.get('todos'), state.get('visibilityFilter')),
+    todos: getVisibleTodos(state),
     editing: state.get('editing')
   };
 };

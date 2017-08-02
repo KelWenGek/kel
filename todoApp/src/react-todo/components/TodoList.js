@@ -5,14 +5,21 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Todo from './Todo';
 
 class TodoList extends Component {
+  static propTypes = {
+    editing: PropTypes.string,
+    todos: ImmutablePropTypes.orderedMap,
+    toggleTodo: PropTypes.func,
+    removeTodo: PropTypes.func,
+    editTodo: PropTypes.func,
+    editDone: PropTypes.func
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     return !is(this.props, nextProps);
   }
-  
+
   render() {
     let { todos, editing, toggleTodo, removeTodo, editTodo, saveTodoAsync, editDone } = this.props;
-
     return (
       <ul className="todo-list">
         {todos.map(todo => {
@@ -30,20 +37,13 @@ class TodoList extends Component {
             >
             </Todo>
           )
-        })}
+        }).toArray()}
       </ul >
     );
   }
 };
 
-TodoList.propTypes = {
-  editing: PropTypes.string,
-  todos: ImmutablePropTypes.orderedSet,
-  toggleTodo: PropTypes.func,
-  removeTodo: PropTypes.func,
-  editTodo: PropTypes.func,
-  editDone: PropTypes.func
-};
+
 
 export default TodoList;
 

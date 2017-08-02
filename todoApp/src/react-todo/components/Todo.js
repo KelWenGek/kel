@@ -5,6 +5,16 @@ import { ENTER_KEY } from '../store/constant'
 
 class Todo extends Component {
 
+  static propTypes = {
+    completed: PropTypes.bool,
+    text: PropTypes.string,
+    onToggle: PropTypes.func,
+    onRemove: PropTypes.func,
+    onEdit: PropTypes.func,
+    onSave: PropTypes.func,
+    onEditDone: PropTypes.func
+  }
+
   componentDidUpdate(prevProps, prevState) {
     let isPrevEditing = prevProps.editing === prevProps.id,
       isEditing = this.props.editing === this.props.id;
@@ -52,13 +62,5 @@ class Todo extends Component {
     );
   }
 }
-Todo.propTypes = {
-  completed: PropTypes.bool,
-  text: PropTypes.string,
-  onToggle: PropTypes.func,
-  onRemove: PropTypes.func,
-  onEdit: PropTypes.func,
-  onSave: PropTypes.func,
-  onEditDone: PropTypes.func
-};
+
 export default Todo;

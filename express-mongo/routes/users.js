@@ -43,7 +43,6 @@ router.post('/update', function (req, res, next) {
       res.redirect('/users/list');
     });
   });
-
 });
 
 router.delete('/del', function (req, res) {
@@ -54,7 +53,6 @@ router.delete('/del', function (req, res) {
       code: 200,
       msg: '删除成功'
     });
-    
   });
 });
 

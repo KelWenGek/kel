@@ -28,6 +28,7 @@
     "redux": "^3.7.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1",
     "typescript": "^2.4.1",
     "vue": "^2.3.3"
   },

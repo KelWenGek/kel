@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import { VISIBILITY_FILTER } from '../store/constant';
 
 class FooterLink extends Component {
-
+  static propTypes = {
+    left: PropTypes.number,
+    curFilter: PropTypes.string,
+    onFilter: PropTypes.func
+  }
   shouldComponentUpdate(nextProps, nextState) {
 
     return !is(this.props, nextProps);
@@ -50,9 +54,4 @@ class FooterLink extends Component {
   }
 };
 
-FooterLink.propTypes = {
-  left: PropTypes.number,
-  curFilter: PropTypes.string,
-  onFilter: PropTypes.func
-};
 export default FooterLink;
