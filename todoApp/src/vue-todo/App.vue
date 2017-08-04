@@ -126,7 +126,7 @@
 
     },
     mounted() {
-      this.fetchData().then((res) => console.log(res));
+      // this.fetchData().then((res) => console.log(res));
     },
     methods: {
       fetchData() {

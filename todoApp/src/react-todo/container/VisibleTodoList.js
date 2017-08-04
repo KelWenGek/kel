@@ -1,28 +1,24 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createSelector } from 'reselect';
+import { getVisibleTodos, makeGetVisibleTodos } from '../selectors/index';
 import TodoList from '../components/TodoList';
 // { toggleTodo, removeTodo, editTodo, editDone, saveTodoAsync }
 import * as mapDispatchToProps from '../store/action/index';
-import { VISIBILITY_FILTER } from '../store/constant';
 
-const getVisibleTodos = createSelector([state => state.get('todos'), state => state.get('visibilityFilter')], (todos, filter) => {
-  switch (filter) {
-    case VISIBILITY_FILTER.ALL:
-      return todos;
-    case VISIBILITY_FILTER.COMPLETED:
-      return todos.filter((todo) => todo.completed);
-    case VISIBILITY_FILTER.ACTIVE:
-      return todos.filter((todo) => !todo.completed);
-  }
-})
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    todos: getVisibleTodos(state),
-    editing: state.get('editing')
+const makeMapStateToProps = () => {
+  const getVisibleTodos = makeGetVisibleTodos();
+  const mapStateToProps = (state, ownProps) => {
+    // console.log(getVisibleTodos(state));
+    return {
+      todos: getVisibleTodos(state),
+      editing: state.get('editing')
+    };
   };
+  return mapStateToProps;
 };
+
+
+
 //可以是一个返回actions的函数
 // const mapDispatchToProps = (dispatch) => bindActionCreators({
 //   onTodoToggle: toggleTodo,
@@ -43,6 +39,6 @@ const mapStateToProps = (state, ownProps) => {
 // };
 
 // const VisibleTodoList = connect(mapStateToProps,mapDispatchToProps)(TodoList);
-const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+const VisibleTodoList = connect(makeMapStateToProps, mapDispatchToProps)(TodoList);
 
 export default VisibleTodoList;

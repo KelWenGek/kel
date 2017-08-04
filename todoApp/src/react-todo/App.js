@@ -21,7 +21,7 @@ class App extends Component {
             <h1>todos</h1>
             <AddTodo />
           </header>
-          <VisibleTodoList />
+          <VisibleTodoList listId="1" />
           <Footer />
         </div>
         <div className="info">
