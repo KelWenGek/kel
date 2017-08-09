@@ -472,6 +472,9 @@ export default class Hello extends Component {
     //     return this.state.counter !== nextState.counter;
     // }
 
+    //测试提交参数
+    //又加了一段注释
+
     handleClick = () => {
         console.log('not bind this');
         console.log(this);
