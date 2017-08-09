@@ -1,5 +1,5 @@
 import { OrderedSet, OrderedMap } from 'immutable';
-
+import axios from 'axios';
 export let util = {
   uuid: function () {
     var i,
@@ -40,7 +40,14 @@ export let util = {
 export class Model {
   constructor(ns) {
     this.ns = ns;
-    this.todos = util.store(ns);
+    this.todos = OrderedMap();
+  }
+
+  init({ list }) {
+    list.forEach(todo => {
+      this.todos = this.todos.set(todo.pid, todo);
+    });
+    return this.todos;
   }
 
   set(datas) {
@@ -49,11 +56,10 @@ export class Model {
       : this.todos);
   }
 
-  add({ text }) {
-    const id = util.uuid();
+  add({ pid, text }) {
     if (this.todos.every((todo, id) => todo.text !== text)) {
-      this.todos = this.todos.set(id, {
-        id,
+      this.todos = this.todos.set(pid, {
+        pid,
         text,
         completed: false
       });

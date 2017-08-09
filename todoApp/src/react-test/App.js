@@ -19,6 +19,80 @@ const withLog = WrappedComponent => {
 
 
 
+// function curry(fn) {
+//     return function curried() {
+//         var context = this, args = [].slice.call(arguments);
+//         return args.length >= fn.length ? fn.apply(context, args) : function () {
+//             var rest = [].slice.call(arguments);
+//             return curried.apply(context, args.concat(rest));
+//         };
+//     };
+// }
+
+// function add(a, b, c) {
+//     return a + b + c;
+// }
+
+
+// const curriedAdd = curry(add);
+// console.log(curriedAdd(1)(2)(3));
+// console.log(curriedAdd(1)(2, 3));
+// console.log(curriedAdd(1));
+
+
+// let border = {
+//     style: 'border',
+//     generate: function (length, measure, type, color) {
+//         return [this.style + ':', length + measure, type, color].join(' ') + ';';
+//     }
+// };
+
+// border.curriedGenerate = curry(border.generate);
+// console.log(border.curriedGenerate(2)('px')('solid')('#369'));
+
+
+function max(/* variable argumengs */) {
+    var args = [].slice.call(arguments);
+    return Math.max.apply(null, args);
+}
+
+function range(start, end, step) {
+    var stop = Math.max(start, end), start = Math.min(start, end), set = [];
+    step = typeof step !== 'undefined' ? step : 1;
+    for (var i = start; i <= stop; i += step) {
+        set.push(i);
+    }
+    return set;
+}
+
+function curry(fn, n) {
+    var arity = n || fn.length;
+    return function curried() {
+        var args = [].slice.call(arguments), context = this;
+        return args.length >= arity ? fn.apply(context, args) : function () {
+            var rest = [].slice.call(arguments);
+            return curried.apply(context, args.concat(rest));
+        };
+    };
+}
+
+const curriedRange = curry(range, 2);
+console.log(curriedRange(1)(10, 2));
+
+
+var delay = 64;
+var p = document.getElementById("p");
+// var draw = "for(n+=7,i=delay,P='p.\\n';i-=1/delay;P+=P[i%2?(i%2*j-j+n/delay^j)&1:2])j=delay/i;p.innerHTML=P";
+var draw = function () {
+    var i = delay; // < ---------------
+    var P = 'p.\n';
+    var j;
+    for (n += 7; i > 0; P += P[i % 2 ? (i % 2 * j - j + n / delay ^ j) & 1 : 2]) {
+        j = delay / i; p.innerHTML = P;
+        i -= 1 / delay;
+    }
+};
+// var n = setInterval(draw, delay);
 //父传给子
 class Parent extends Component {
     state = {
@@ -211,7 +285,7 @@ class Context extends Component {
     }
 
     state = { value: '' }
-    
+
     constructor() {
         super();
     }

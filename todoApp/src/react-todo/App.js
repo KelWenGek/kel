@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getInitList } from './store/action/index';
 import PropTypes from 'prop-types';
 import AddTodo from './components/AddTodo';
 import VisibleTodoList from './container/VisibleTodoList';
 import Footer from './container/Footer';
+@connect(null, { getInitList })
 class App extends Component {
 
   static contextTypes = {
@@ -11,6 +14,10 @@ class App extends Component {
       dispatch: PropTypes.func.isRequired,
       getState: PropTypes.func.isRequired
     })
+  }
+  componentDidMount() {
+    let { getInitList } = this.props;
+    getInitList();
   }
 
   render() {

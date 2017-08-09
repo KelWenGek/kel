@@ -20,11 +20,11 @@ export default class Button extends React.Component {
           className={cn({ [style.active]: active })}
           ref={(c) => { this.dom = c; }}
         />
-        { size === 's1' && <em
+        {size === 's1' && <em
           style={{
             [transform]: `${arrow} scale(1,2)`,
           }}
-        /> }
+        />}
         <span className={cn({ [style.position]: position })}>{label}</span>
       </div>
     );

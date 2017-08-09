@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./index');
 var users = require('./users');
+var todos = require('./todos');
 module.exports = function (app) {
 
     // app.use(logger('dev'));
@@ -16,6 +17,7 @@ module.exports = function (app) {
 
     app.use('/', index);
     app.use('/users', users);
+    app.use('/todos', todos);
 
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {

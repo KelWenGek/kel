@@ -1,9 +1,10 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-// var projectName = 'react-test';
+var projectName = 'react-test';
+// var projectName = 'canvas-test';
 // var projectName = 'mobx-test';
 // var projectName = 'react-todo';
-var projectName = 'vue-todo';
+// var projectName = 'vue-todo';
 // var projectName = 'ts-test';
 
 var distPath = `../dist/${projectName}`;
@@ -31,7 +32,7 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8081,
+    port: 8088,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
