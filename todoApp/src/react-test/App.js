@@ -474,7 +474,7 @@ export default class Hello extends Component {
 
     //测试提交参数
     //又加了一段注释
-
+    //稍后重置
     handleClick = () => {
         console.log('not bind this');
         console.log(this);
