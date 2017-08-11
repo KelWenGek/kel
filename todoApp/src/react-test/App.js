@@ -51,6 +51,7 @@ const withLog = WrappedComponent => {
 // console.log(border.curriedGenerate(2)('px')('solid')('#369'));
 
 
+//想测试一下合并提交的文字信息
 function max(/* variable argumengs */) {
     var args = [].slice.call(arguments);
     return Math.max.apply(null, args);
