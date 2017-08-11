@@ -1,5 +1,5 @@
-import { OrderedSet } from 'immutable';
-
+import { OrderedSet, OrderedMap } from 'immutable';
+import axios from 'axios';
 export let util = {
   uuid: function () {
     var i,
@@ -33,14 +33,21 @@ export let util = {
     }
 
     var store = localStorage.getItem(namespace);
-    return OrderedSet((store && JSON.parse(store)));
+    return OrderedMap((store && JSON.parse(store)) || {});
   }
 };
 
 export class Model {
   constructor(ns) {
     this.ns = ns;
-    this.todos = util.store(ns);
+    this.todos = OrderedMap();
+  }
+
+  init({ list }) {
+    list.forEach(todo => {
+      this.todos = this.todos.set(todo.pid, todo);
+    });
+    return this.todos;
   }
 
   set(datas) {
@@ -49,16 +56,17 @@ export class Model {
       : this.todos);
   }
 
-  add({ text }) {
-    if (this.todos.every(todo => todo.text !== text)) {
-      this.todos = this.todos.add({
-        id: util.uuid(),
+  add({ pid, text }) {
+    if (this.todos.every((todo, id) => todo.text !== text)) {
+      this.todos = this.todos.set(pid, {
+        pid,
         text,
         completed: false
       });
     } else {
       console.log('不要重复添加');
     }
+
     this.set();
 
     return this.todos;
@@ -66,21 +74,13 @@ export class Model {
 
   toggle({ id }) {
     this.todos = this
-      .todos
-      .map(todo => {
-        let _todo;
-        if (todo.id === id) {
-          _todo = Object.assign({}, todo, {
-            completed: !todo.completed
-          });
-        } else {
-          _todo = todo;
-        }
-        return _todo;
+      .todos.update(id, todo => {
+        return Object.assign({}, todo, {
+          completed: !todo.completed
+        });
       });
 
     this.set();
-
     return this.todos;
 
   }
@@ -94,8 +94,7 @@ export class Model {
   }
 
   remove({ id }) {
-    this.todos = this.todos.delete(this.todos.find(todo => todo.id === id));
-
+    this.todos = this.todos.delete(id);
     this.set();
     return this.todos;
   }
@@ -108,16 +107,10 @@ export class Model {
 
   save({ id, text }) {
     this.todos = this
-      .todos
-      .map(todo => {
-        let _todo;
-        if (todo.id === id) {
-          _todo = Object.assign({}, todo, { text });
-        } else {
-          _todo = todo;
-        }
-        return _todo;
-      });
+      .todos.update(id, todo => {
+        return Object.assign({}, todo, { text });
+      })
+
     this.set();
     return this.todos;
   }
