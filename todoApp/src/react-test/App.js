@@ -19,66 +19,7 @@ const withLog = WrappedComponent => {
 
 
 
-// function curry(fn) {
-//     return function curried() {
-//         var context = this, args = [].slice.call(arguments);
-//         return args.length >= fn.length ? fn.apply(context, args) : function () {
-//             var rest = [].slice.call(arguments);
-//             return curried.apply(context, args.concat(rest));
-//         };
-//     };
-// }
 
-// function add(a, b, c) {
-//     return a + b + c;
-// }
-
-
-// const curriedAdd = curry(add);
-// console.log(curriedAdd(1)(2)(3));
-// console.log(curriedAdd(1)(2, 3));
-// console.log(curriedAdd(1));
-
-
-// let border = {
-//     style: 'border',
-//     generate: function (length, measure, type, color) {
-//         return [this.style + ':', length + measure, type, color].join(' ') + ';';
-//     }
-// };
-
-// border.curriedGenerate = curry(border.generate);
-// console.log(border.curriedGenerate(2)('px')('solid')('#369'));
-
-
-//想测试一下合并提交的文字信息
-function max(/* variable argumengs */) {
-    var args = [].slice.call(arguments);
-    return Math.max.apply(null, args);
-}
-
-function range(start, end, step) {
-    var stop = Math.max(start, end), start = Math.min(start, end), set = [];
-    step = typeof step !== 'undefined' ? step : 1;
-    for (var i = start; i <= stop; i += step) {
-        set.push(i);
-    }
-    return set;
-}
-
-function curry(fn, n) {
-    var arity = n || fn.length;
-    return function curried() {
-        var args = [].slice.call(arguments), context = this;
-        return args.length >= arity ? fn.apply(context, args) : function () {
-            var rest = [].slice.call(arguments);
-            return curried.apply(context, args.concat(rest));
-        };
-    };
-}
-
-const curriedRange = curry(range, 2);
-console.log(curriedRange(1)(10, 2));
 
 
 var delay = 64;

@@ -1,11 +1,16 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var projectName = 'react-test';
+// var projectName = 'react-test';
 // var projectName = 'canvas-test';
 // var projectName = 'mobx-test';
 // var projectName = 'react-todo';
 // var projectName = 'vue-todo';
 // var projectName = 'ts-test';
+// var projectName = 'curry-test';
+var projectName = 'js-test';
+// var projectName = 'babel-test';
+// var projectName = 'es6-test';
+
 
 var distPath = `../dist/${projectName}`;
 module.exports = {
