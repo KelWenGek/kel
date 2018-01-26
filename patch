@@ -1,0 +1,14 @@
+diff --git a/src/js-test/test.js b/src/js-test/test.js
+index 0e65723..7488291 100644
+--- a/src/js-test/test.js
++++ b/src/js-test/test.js
+@@ -6,4 +6,6 @@ var obj = {
+         }.bind(this), 1000)
+     }
+ }
+-obj.getA()
+\ No newline at end of file
++obj.getA()
++
++console.log('this line is for patch');
+\ No newline at end of file

@@ -1,0 +1,26 @@
+From bd6a14ee3892f40a29453b9a6ad7e240f4f3a318 Mon Sep 17 00:00:00 2001
+From: KelWenGek <wengxiacheng3132@163.com>
+Date: Mon, 19 Feb 2018 13:07:54 +0800
+Subject: [PATCH 1/2] just for testing patch
+
+---
+ src/js-test/test.js | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/js-test/test.js b/src/js-test/test.js
+index 0e65723..7488291 100644
+--- a/src/js-test/test.js
++++ b/src/js-test/test.js
+@@ -6,4 +6,6 @@ var obj = {
+         }.bind(this), 1000)
+     }
+ }
+-obj.getA()
+\ No newline at end of file
++obj.getA()
++
++console.log('this line is for patch');
+\ No newline at end of file
+-- 
+2.14.1
+

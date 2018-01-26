@@ -1,0 +1,23 @@
+From 9407d0aae6ddce13af88bc6b5e088972e68c65dc Mon Sep 17 00:00:00 2001
+From: KelWenGek <wengxiacheng3132@163.com>
+Date: Mon, 19 Feb 2018 13:20:48 +0800
+Subject: [PATCH 2/2] testing for format-patch
+
+---
+ src/js-test/test.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/js-test/test.js b/src/js-test/test.js
+index 7488291..cf4fde4 100644
+--- a/src/js-test/test.js
++++ b/src/js-test/test.js
+@@ -8,4 +8,4 @@ var obj = {
+ }
+ obj.getA()
+ 
+-console.log('this line is for patch');
+\ No newline at end of file
++console.log('this line is for patch');console.log("testing for format-patch")
+-- 
+2.14.1
+

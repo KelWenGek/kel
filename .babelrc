@@ -1,0 +1,41 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 8"
+          ]
+        }
+      }
+    ],
+    "react",
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-runtime",
+<<<<<<< HEAD:todoApp/.babelrc
+    "transform-react-jsx",
+=======
+    // "transform-react-jsx",
+    // "transform-vue-jsx",
+>>>>>>> 07c6b6a... 清理kel项目:.babelrc
+    "transform-decorators-legacy"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "env",
+        "stage-2"
+      ],
+      "plugins": [
+        "istanbul",
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
+}
