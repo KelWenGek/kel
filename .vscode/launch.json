@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/todoApp/src/js-test/t.js"
+            "program": "${workspaceFolder}/src/js-test/test.js"
         }
     ]
 }
