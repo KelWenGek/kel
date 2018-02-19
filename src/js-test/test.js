@@ -8,4 +8,4 @@ var obj = {
 }
 obj.getA()
 
-console.log('this line is for patch');
+console.log('this line is for patch');console.log("testing for format-patch")
