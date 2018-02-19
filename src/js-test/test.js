@@ -7,3 +7,5 @@ var obj = {
     }
 }
 obj.getA()
+
+console.log('this line is for patch');
