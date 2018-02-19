@@ -18,12 +18,8 @@
   ],
   "plugins": [
     "transform-runtime",
-<<<<<<< HEAD:todoApp/.babelrc
-    "transform-react-jsx",
-=======
     // "transform-react-jsx",
     // "transform-vue-jsx",
->>>>>>> 07c6b6a... 清理kel项目:.babelrc
     "transform-decorators-legacy"
   ],
   "env": {

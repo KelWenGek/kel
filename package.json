@@ -93,14 +93,10 @@
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.6",
     "semver": "^5.3.0",
-<<<<<<< HEAD:todoApp/package.json
-    "shelljs": "^0.7.6",
-=======
     "serve-favicon": "^2.4.5",
     "shelljs": "^0.7.8",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
->>>>>>> 07c6b6a... 清理kel项目:package.json
     "ts-loader": "^2.2.2",
     "url-loader": "^0.5.8",
     "vue-loader": "^12.2.2",
