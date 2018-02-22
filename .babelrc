@@ -18,8 +18,6 @@
   ],
   "plugins": [
     "transform-runtime",
-    // "transform-react-jsx",
-    // "transform-vue-jsx",
     "transform-decorators-legacy"
   ],
   "env": {
