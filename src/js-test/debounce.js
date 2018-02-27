@@ -23,7 +23,7 @@ function debounce(func, wait, immediate) {
         if (immediate) {
             !timeout && (result = func.apply(context, args));
         }
-        timeout = setTimeout(later, wait);
+        timeout = setTimeout(later, wait); //始终设置一个间隔为期望中的定时器,保证只触发一次
         return result;
     }
 }

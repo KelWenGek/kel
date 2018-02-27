@@ -53,11 +53,11 @@ function throttle(func, wait) {
 
     return function () {
         var now = new Date().getTime();
-        if (!previous) previous = now;
-        var remaining = wait - (now - previous);
+        if (!previous) previous = now; //为了获取距离期望响应的时间间隔,要先获取前置的时间戳
+        var remaining = wait - (now - previous); //获取距离期望响应的时间间隔
         context = this;
         args = arguments;
-        if (remaining <= 0 || remaining > wait) {
+        if (remaining <= 0 || remaining > wait) { //如果剩余时间间隔为0,则直接触发响应
             if (timeout) {
                 clearTimeout(timeout);
                 timeout = null;
