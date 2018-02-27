@@ -21,3 +21,5 @@ console.log('test local origin')
 console.log('change for rebase 1');
 
 console.log('change for rebase 2');
+
+console.log('master branch commit B');
